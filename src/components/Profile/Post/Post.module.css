@@ -1,0 +1,12 @@
+.item {
+  color: #47525E;
+  font-size: 26px;
+  line-height: 33px;
+  text-align: left;
+}
+
+.item img{
+    border-radius: 100%;
+    width: 58px;
+    height: 58px;
+}
