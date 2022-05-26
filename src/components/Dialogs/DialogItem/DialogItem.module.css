@@ -1,0 +1,41 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 50px;
+}
+
+.dialogsItems {
+    border-right: 1px solid #7e55f3;
+    padding-right: 80px;
+}
+
+/* .dialog.active a {
+    color: blue;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: left;
+} */
+.dialog {
+    padding: 30px;
+}
+.dialog a {
+    color: #8190a5;
+    font-size: 18px;
+    line-height: 36px;
+    text-align: left;
+    text-decoration: none;
+}
+
+.message {
+    color: #8190a5;
+    font-size: 18px;
+    line-height: 30px;
+    width: 240px;
+    text-align: center;
+    padding: 10px;
+    margin: 20px;
+    border: 2px solid #c0ccda;
+    border-radius: 10px;
+    width: 278px;
+    height: 89px;
+}

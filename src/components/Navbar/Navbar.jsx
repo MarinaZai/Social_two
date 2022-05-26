@@ -1,6 +1,8 @@
 import React from 'react';
 import s from '../Navbar/Navbar.module.css';
 import { NavLink } from "react-router-dom";
+import { Sidebar } from '../Navbar/Sidebar/Sidebar';
+
 
 
 function active(params) {
@@ -11,7 +13,7 @@ function active(params) {
   }
 }                         /* navData => navData.isActive ? s.activeLink : "" */
 
-export const Navbar = () => {
+export const Navbar = (props) => {
   return <nav className={s.nav}>
     <div className={s.item}>
       <NavLink to='/profile' className={active}>Profile</NavLink>
@@ -27,6 +29,9 @@ export const Navbar = () => {
     </div>
     <div className={s.item}>
       <NavLink to='/settings' className={active}>Settings</NavLink>
+    </div>
+    <div className={s.item}>
+     <Sidebar friends={props.state.friends}/>
     </div>
   </nav>
 }
