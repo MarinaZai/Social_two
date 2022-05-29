@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar/Navbar';
 import { News } from './components/News/News';
 import { Profile } from './components/Profile/Profile';
 import { Settings } from './components/Settings/Settings';
+import { addMessage, store } from './redux/state';
 
 
 function App(props) {
@@ -17,8 +18,8 @@ function App(props) {
         <Navbar state={props.state.friendList} />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile' element={<Profile state={props.state.profilePage} />} />
-            <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} />} />
+            <Route path='/profile' element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />} />
+            <Route path='/dialogs/*' element={<Dialogs store={props.store} />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
