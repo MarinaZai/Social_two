@@ -6,7 +6,7 @@ import { Message } from './Message/Message';
 
 export const Dialogs = (props) => {
 
-    let state = props.store.getState().dialogsPage;
+    let state = props.dialogsPage;
 
     let dialogsElements = state.dialogs.map(
         dialog => (<DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />)
@@ -15,23 +15,14 @@ export const Dialogs = (props) => {
     let messagesElements = state.messages.map(
         message => (<Message key={message.id} message={message.message} />)
     )
-
-    /*   let newMessageElement = React.createRef();
-      let addMessage = () => {
-          let text = newMessageElement.current.value;
-          props.addMessage(text);
-          newMessageElement.current.value = '';
-      }
-      let onMessageChange = () => {
-  
-      } */
+    
     let newMessageBody = state.newMessageBody;
     let onSendMessageClck = () => {
-        props.store.dispatch(sendMessageCreator())
+        props.sendMessage()
     }
     let onNewMessageChange = (e) => {
         let body = e.target.value;
-        props.store.dispatch(updateNewMessageBodyCreator(body))
+        props.updateNewMessageBody(body)
     }
     return (
         <div className={s.dialogs}>

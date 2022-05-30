@@ -30,7 +30,7 @@ export const Navbar = (props) => {
       <NavLink to='/settings' className={active}>Settings</NavLink>
     </div>
     <div className={s.item}>
-      <Sidebar friends={props.state.friends} />
+      {/* <Sidebar friends={props.state.friends} /> */}
     </div>
   </nav>
 }

@@ -20,31 +20,36 @@ let initialState = {
 
   newMessageBody: ""
 }
-export const dialogsReducer = (state=initialState, action) => {
-    switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body;
-            return state;
-        case SEND_MESSAGE:
-            let body = state.newMessageBody;
-            state.newMessageBody = '';
-            state.messages.push({ id: Math.floor(Math.random() * 1000), message: body })
-            return state;
-        default:
-            return state;
-    }
+export const dialogsReducer = (state = initialState, action) => {
+
+  switch (action.type) {
+    case UPDATE_NEW_MESSAGE_BODY:
+      return {
+        ...state,
+        newMessageBody: action.body
+      };     
+    case SEND_MESSAGE:
+      let body = state.newMessageBody;
+      return {
+        ...state,
+        newMessageBody: '',
+        messages: [...state.messages, { id: Math.floor(Math.random() * 1000), message: body } ]
+      };
+    default:
+      return state;
+  }
 }
 
 
 export const sendMessageCreator = () => {
-    return {
-      type: SEND_MESSAGE
-    }
+  return {
+    type: SEND_MESSAGE
   }
-  
-  export const updateNewMessageBodyCreator = (body) => {
-    return {
-      type: UPDATE_NEW_MESSAGE_BODY,
-      body: body
-    }
+}
+
+export const updateNewMessageBodyCreator = (body) => {
+  return {
+    type: UPDATE_NEW_MESSAGE_BODY,
+    body: body
   }
+}
