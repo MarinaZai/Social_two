@@ -7,7 +7,7 @@ import { Navbar } from './components/Navbar/Navbar';
 import { News } from './components/News/News';
 import { Profile } from './components/Profile/Profile';
 import { Settings } from './components/Settings/Settings';
-import { addMessage, store } from './redux/state';
+import { store } from './redux/redux-store';
 
 
 function App(props) {
@@ -15,7 +15,7 @@ function App(props) {
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
-        <Navbar state={props.state.friendList} />
+        <Navbar state={props.state.sidebar} />
         <div className='app-wrapper-content'>
           <Routes>
             <Route path='/profile' element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />} />
@@ -24,8 +24,6 @@ function App(props) {
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
           </Routes>
-          {/*  <Dialogs /> */}
-          {/* <Profile /> */}
         </div>
       </div>
     </BrowserRouter>

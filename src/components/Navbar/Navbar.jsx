@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { Sidebar } from '../Navbar/Sidebar/Sidebar';
 
 
-
 function active(params) {
   if (params.isActive) {
     return s.activeLink
@@ -31,7 +30,7 @@ export const Navbar = (props) => {
       <NavLink to='/settings' className={active}>Settings</NavLink>
     </div>
     <div className={s.item}>
-     <Sidebar friends={props.state.friends}/>
+      <Sidebar friends={props.state.friends} />
     </div>
   </nav>
 }

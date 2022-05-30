@@ -2,6 +2,7 @@ import React from 'react';
 import s from '../Sidebar/Sidebar.module.css';
 import { NavLink } from "react-router-dom";
 import { SidebarItem } from './SidebarItem/SidebarItem';
+import { store } from '../../../redux/redux-store';
 
 
 function active(params) {
