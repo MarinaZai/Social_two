@@ -1,30 +1,34 @@
 import React from "react";
-import s from '../Users/Users.module.css'
-import * as axios from 'axios';
-import userPhoto from '../assets/Raster.jpeg'
+import s from "../Users/Users.module.css"
+import userPhoto from "../assets/Raster.jpeg"
+import { NavLink } from "react-router-dom";
 
 
-class Users extends React.Component {
+export let Users = (props) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-    componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            this.props.setUsers(response.data.items )
-        })
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
-
-    render() {
-        return <div>
-        <button onClick={this.getUsers}>Get Users</button>
+    return <div>
+        <div>
+            {pages.map(p => {
+                return <span key={p} className={props.currentPage === p ? s.selectedPage : undefined} onClick={(e) => { props.onPageChanged(p) }}>{p}</span>
+            })}
+        </div>
         {
-            this.props.users.map(u => <div key={u.id}>
+            props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photos.small != null ? u.photos.small: userPhoto} />
+                        <NavLink to={"/profile/"+u.id}>
+                            <img alt="pho" src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto} />
+                        </NavLink>
                     </div>
                     <div>
-                      { u.followed
-                      ? <button onClick={ () => {this.props.unfollow(u.id)}}>Unfollow</button>
-                      : <button onClick={ () => {this.props.unfollow(u.id)}}>Follow</button>}
+                        {u.followed
+                            ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
+                            : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
                     </div>
                 </span>
                 <span>
@@ -49,5 +53,3 @@ class Users extends React.Component {
         }
     </div>
 }
-}
-export default Users;

@@ -1,15 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Dialogs } from './components/Dialogs/Dialogs';
-import { DialogsContainer, DialogsContaner } from './components/Dialogs/DialogsContaner';
+import { DialogsContainer } from './components/Dialogs/DialogsContaner';
 import { Header } from './components/Header/Header';
 import { Music } from './components/Music/Music';
 import { Navbar } from './components/Navbar/Navbar';
 import { News } from './components/News/News';
-import { Profile } from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileRouterContainer';
 import { Settings } from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
-import { store } from './redux/redux-store';
 
 
 function App(props) {
@@ -20,7 +18,7 @@ function App(props) {
         <Navbar /* state={props.state.sidebar} */ />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/profile/:profileId' element={<ProfileContainer />} />
             <Route path='/dialogs/*' element={<DialogsContainer />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />

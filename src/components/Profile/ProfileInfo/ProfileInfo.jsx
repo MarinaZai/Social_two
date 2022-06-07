@@ -1,14 +1,19 @@
 import React from 'react';
+import { Preloader } from '../../common/Preloader/Preloader';
 import s from '../ProfileInfo/ProfileInfo.module.css'
 
-export const ProfileInfo = () => {
+export const ProfileInfo = (props) => {
+    if(!props.profile) {
+        return <Preloader />
+    }
     return (
         <div>
             <div>
-                <img src='https://www.iguides.ru/upload/medialibrary/9f8/9f8fdff471b7d281f81f694c100b5adc.png'></img>
+                <img className={s.oboi} alt='oboi' src='https://www.iguides.ru/upload/medialibrary/9f8/9f8fdff471b7d281f81f694c100b5adc.png'></img>
             </div>
             <div className={s.descriptionBlock}>
-                ava+discription
+                    <img src={props.profile.photos.large} alt='largeava'/>
+                <div>{props.profile.fullName}</div>
             </div>
         </div>
 
