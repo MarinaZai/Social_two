@@ -19,6 +19,7 @@ function withRouter(Component) {
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    auth: state.auth
    })
 export default connect(mapStateToProps, { setUserProfile })(withRouter(ProfileContainer));

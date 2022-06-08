@@ -3,10 +3,14 @@ import { Profile } from './Profile';
 import axios from 'axios';
 
 class ProfileContainer extends React.Component {
-    profileId = this.props.router.params.profileId;
+   
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.profileId}`).then(response => {
+       let profileId = this.props.router.params.profileId;
+        if (!profileId){
+            profileId=24395
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+profileId).then(response => {
             this.props.setUserProfile(response.data);
         })
     }
