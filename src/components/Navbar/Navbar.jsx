@@ -1,7 +1,7 @@
 import React from 'react';
 import s from '../Navbar/Navbar.module.css';
 import { NavLink } from "react-router-dom";
-import { Sidebar } from '../Navbar/Sidebar/Sidebar';
+/* import { Sidebar } from '../Navbar/Sidebar/Sidebar'; */
 
 
 function active(params) {
