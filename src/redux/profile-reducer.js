@@ -1,59 +1,66 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const SET_USER_PROFILE ='SET_USER_PROFILE'
+import { usersAPI } from "../api/api";
+
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 let initialState = {
   posts: [
-    { id: 1, message: 'Hey, why nobody love me?', likes: 15 },
-    { id: 2, message: 'It is our new program! Hey!', likes: 22 }
+    { id: 1, message: "Hey, why nobody love me?", likes: 15 },
+    { id: 2, message: "It is our new program! Hey!", likes: 22 },
   ],
-  newPostText: 'ниче не понятно, но довольно интересно',
-  profile: null
-}
+  newPostText: "ниче не понятно, но довольно интересно",
+  profile: null,
+};
 export const profileReducer = (state = initialState, action) => {
-
   switch (action.type) {
     case ADD_POST: {
       let newPost = {
         id: Math.floor(Math.random() * 1000),
         message: state.newPostText,
-        likes: 0
+        likes: 0,
       };
       return {
         ...state,
         posts: [...state.posts, newPost],
-        newPostText: ''
-      }
+        newPostText: "",
+      };
     }
     case UPDATE_NEW_POST_TEXT: {
       return {
         ...state,
-        newPostText: action.newText
-      }
+        newPostText: action.newText,
+      };
     }
     case SET_USER_PROFILE: {
       return {
         ...state,
-        profile: action.profile
-      }
+        profile: action.profile,
+      };
     }
     default:
       return state;
-      
   }
-}
+};
 
 export const addPostActionCreator = () => {
   return {
-    type: ADD_POST
-  }
-}
-export const setUserProfile =(profile) => {
-return {type: SET_USER_PROFILE, profile}
-}
+    type: ADD_POST,
+  };
+};
+export const setUserProfile = (profile) => {
+  return { type: SET_USER_PROFILE, profile };
+};
+
+export const getUserProfile = (profileId) => (dispatch) => {
+  usersAPI.getProfile(profileId).then((response) => {
+    dispatch(setUserProfile(response.data));
+  });
+};
+
 export const updateNewPostTextActionCreator = (text) => {
   return {
     type: UPDATE_NEW_POST_TEXT,
-    newText: text
-  }
-}
+    newText: text,
+  };
+};

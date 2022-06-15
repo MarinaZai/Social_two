@@ -26,25 +26,15 @@ export const usersAPI = {
         return instance.delete(
           `follow/${userId}`,
         )
+     },
+     getProfile(profileId) {
+      return instance.get(`profile/`+profileId)
      }
 }
 
 
-/* 
-export const getUnfollow = (currentPage=1,pageSize=10) => {
-    return  instance.delete
-    (`users?page=${currentPage}&count=${pageSize}`,)
-      .then(response => {
-          return response.data
-         })
- }
- 
- 
-export const postFollow = (currentPage=1,pageSize=10) => {
-    return  instance.post
-    (`users?page=${currentPage}&count=${pageSize}`,)
-      .then(response => {
-          return response.data
-         })
- }
- */
+export const authAPI = {
+me () {
+  return instance.get(`auth/me`)
+}
+}
