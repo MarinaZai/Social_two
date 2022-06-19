@@ -8,13 +8,21 @@ class ProfileContainer extends React.Component {
       profileId = 24395;
     }
     this.props.getUserProfile(profileId);
+    //setTimeout(() => {
+      this.props.getStatus(profileId);
+    //},1000)
+   
   }
 
   render() {
-    
-    return <Profile {...this.props} profile={this.props.profile} />;
+    return (
+      <Profile
+        {...this.props}
+        profile={this.props.profile}
+        status={this.props.status}
+        updateStatus={this.props.updateStatus}
+      />
+    );
   }
 }
-
-
 export default ProfileContainer;
