@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
 let initialState = {
@@ -16,23 +15,15 @@ let initialState = {
     { id: 2, message: "I am a normal popover and I can have text and everything" },
     { id: 3, message: "I am a normal popover and I can have text and everything" },
     { id: 4, message: "I am a normal popover and I can have text and everything" }
-  ],
-
-  newMessageBody: ""
+  ]
 }
 export const dialogsReducer = (state = initialState, action) => {
 
-  switch (action.type) {
-    case UPDATE_NEW_MESSAGE_BODY:
-      return {
-        ...state,
-        newMessageBody: action.body
-      };     
+  switch (action.type) {   
     case SEND_MESSAGE:
-      let body = state.newMessageBody;
+      let body = action.newMessageBody;
       return {
         ...state,
-        newMessageBody: '',
         messages: [...state.messages, { id: Math.floor(Math.random() * 1000), message: body } ]
       };
     default:
@@ -41,15 +32,8 @@ export const dialogsReducer = (state = initialState, action) => {
 }
 
 
-export const sendMessageCreator = () => {
+export const sendMessageCreator = (newMessageBody) => {
   return {
-    type: SEND_MESSAGE
-  }
-}
-
-export const updateNewMessageBodyCreator = (body) => {
-  return {
-    type: UPDATE_NEW_MESSAGE_BODY,
-    body: body
+    type: SEND_MESSAGE, newMessageBody
   }
 }
